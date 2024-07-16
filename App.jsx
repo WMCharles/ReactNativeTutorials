@@ -1,25 +1,25 @@
-import React from "react";
+import { View, Text, StyleSheet, StatusBar } from "react-native";
 
-import { View, Alert, Text, StatusBar, Button } from "react-native";
+import React from 'react'
 
 export default function App() {
     return (
-        <View style={{ paddingVertical: 20, paddingHorizontal: 20, backgroundColor: 'green', flex: 1 }}>
+        <View style={styles.container}>
             <StatusBar />
-            <Button title="Press 1" onPress={() => Alert.alert("Invalid Data")} />
-            <Button title="Press 2" onPress={() => Alert.alert("Invalid Data", "DoB incorrect!")} />
-            <Button title="Press 3" onPress={() => Alert.alert("Invalid Data", "DoB incorrect!",
-                [
-                    {
-                        text: 'Cancel',
-                        onPress: () => console.log("Cancelled")
-                    },
-                    {
-                        text: 'OK',
-                        onPress: () => console.log("OK")
-                    }
-                ])}
-            />
+            <Text style={styles.title}>Hello</Text>
         </View>
-    );
+    )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: 'plum',
+        flex: 1,
+        padding: 20
+    },
+    title: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        // fontFamily: 'romans'
+    }
+})
