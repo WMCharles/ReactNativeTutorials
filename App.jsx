@@ -1,39 +1,44 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StatusBar, StyleSheet, useWindowDimensions } from 'react-native';
+import React from 'react'
+import { View, Text, StyleSheet, SafeAreaView, Platform } from 'react-native'
 
 export default function App() {
-   
-    const width = useWindowDimensions().width
-    const height = useWindowDimensions().height
 
     return (
-        <View style={styles.container}>
-            <StatusBar backgroundColor="gray" barStyle="light-content" />
-            <View
-                style={[
-                    styles.box,
-                    {
-                        width: width > 500 ? '70%' : '90%',
-                        height: height > 600 ? '60%' : '90%'
-                    }
-                ]}
-            >
-                <Text style={{ fontSize: width > 500 ? 70 : 24 }}>Welcome!</Text>
+        <SafeAreaView style={styles.safearea}>
+            <View style={styles.container}>
+                <View style={styles.box}>
+                    <Text style={styles.text}>Hello World</Text>
+                </View>
             </View>
-        </View>
-    );
+        </SafeAreaView>
+    )
 }
 
 const styles = StyleSheet.create({
-    container: {
+    safearea: {
         flex: 1,
+        paddingTop: Platform.OS === 'android' ? 30 : 0,
+        backgroundColor: 'plum'
+    },
+    container: {
         backgroundColor: 'plum',
-        alignItems: 'center',
-        justifyContent: 'center'
+        flex: 1,
     },
     box: {
-        backgroundColor: 'lightblue',
-        alignItems: 'center',
-        justifyContent: 'center'
+        padding: 10
+    },
+    text: {
+        ...Platform.select({
+            ios: {
+                fontSize: 24,
+            },
+            android: {
+                color: 'blue',
+                fontStyle: 'italic',
+                fontSize: 30
+            }
+        }),
+        fontWeight: 'bold',
+        textAlign: 'center'
     }
-});
+})
